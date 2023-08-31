@@ -41,6 +41,15 @@ def add_journal_entries(journal_name, journal_entry):
     input("\nPress Any Key To continue")
 
 
+def read_entries(journal_name):
+    if (os.path.exists(f"journals/{journal_name}.txt")):
+        with open(f"journals/{journal_name}.txt", "r") as file:
+            print(f"\n{file.read()}")
+    else:
+        print("Journal Not Found")
+    
+    input("\nPress Any Key To continue")
+
 def quit_app():
     quit()
 
@@ -48,8 +57,8 @@ while True:
     clear_screen()
     print("1. Create Journal (creates a folder named 'journals' If Not Present Already.)")
     print("2. Add Journal Entries")
-    print("3. Delete Journal / Entries")
-    print("4. View Journals")
+    print("3. Read Entries")
+    print("4. Display Journals Saved")
     print("5. Quit")
     chosen = input(f"Select An Option {cursor} ")
 
@@ -64,7 +73,8 @@ while True:
         add_journal_entries(journal_name, journal_entry)
     elif(int(chosen) == 3):
         clear_screen()
-        pass
+        journal_To_Read = input(f"Which Journal Do You Want To Read? { cursor} ")
+        read_entries(journal_To_Read)
     elif(int(chosen) == 4):
         clear_screen()
         display_journals()
